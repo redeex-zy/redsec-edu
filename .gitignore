@@ -1,0 +1,12 @@
+.next
+node_modules
+.env.local
+.vercel
+.qa-polish
+.qa-screens
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist
+tsconfig.tsbuildinfo

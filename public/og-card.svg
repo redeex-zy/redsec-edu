@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#020617"/>
+  <g opacity=".95">
+    <circle cx="177" cy="133" r="202" fill="url(#a)"/>
+    <circle cx="1052" cy="506" r="224" fill="url(#b)"/>
+    <rect x="0" y="0" width="1200" height="630" fill="url(#c)"/>
+  </g>
+  <g opacity=".22" stroke="#94A3B8">
+    <path d="M0 63.5H1200"/>
+    <path d="M0 126.5H1200"/>
+    <path d="M0 189.5H1200"/>
+    <path d="M0 252.5H1200"/>
+    <path d="M0 315.5H1200"/>
+    <path d="M0 378.5H1200"/>
+    <path d="M0 441.5H1200"/>
+    <path d="M0 504.5H1200"/>
+    <path d="M0 567.5H1200"/>
+    <path d="M63.5 0V630"/>
+    <path d="M126.5 0V630"/>
+    <path d="M189.5 0V630"/>
+    <path d="M252.5 0V630"/>
+    <path d="M315.5 0V630"/>
+    <path d="M378.5 0V630"/>
+    <path d="M441.5 0V630"/>
+    <path d="M504.5 0V630"/>
+    <path d="M567.5 0V630"/>
+    <path d="M630.5 0V630"/>
+    <path d="M693.5 0V630"/>
+    <path d="M756.5 0V630"/>
+    <path d="M819.5 0V630"/>
+    <path d="M882.5 0V630"/>
+    <path d="M945.5 0V630"/>
+    <path d="M1008.5 0V630"/>
+    <path d="M1071.5 0V630"/>
+    <path d="M1134.5 0V630"/>
+  </g>
+  <rect x="73" y="74" width="146" height="146" rx="73" fill="#020617" stroke="#F87171" stroke-opacity=".35"/>
+  <circle cx="146" cy="147" r="56" fill="url(#d)"/>
+  <circle cx="146" cy="147" r="40" stroke="#67E8F9" stroke-opacity=".28"/>
+  <text x="112" y="158" fill="white" font-family="Arial, sans-serif" font-size="36" letter-spacing="10">RS</text>
+  <text x="250" y="136" fill="#A5F3FC" font-family="Arial, sans-serif" font-size="24" letter-spacing="6">REDSEC EDU</text>
+  <text x="250" y="182" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="24">Authorized cybersecurity for education environments</text>
+  <text x="76" y="330" fill="white" font-family="Arial, sans-serif" font-size="72" font-weight="700">
+    <tspan x="76" dy="0">Cybersecurity built for schools,</tspan>
+    <tspan x="76" dy="84">students, and education platforms.</tspan>
+  </text>
+  <text x="78" y="491" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="30">
+    <tspan x="78" dy="0">Safe external reviews, student data protection guidance,</tspan>
+    <tspan x="78" dy="44">cyber awareness training, and ethical hands-on learning.</tspan>
+  </text>
+  <g>
+    <rect x="78" y="544" width="154" height="42" rx="21" fill="#0F172A" stroke="#334155"/>
+    <rect x="248" y="544" width="122" height="42" rx="21" fill="#0F172A" stroke="#334155"/>
+    <rect x="386" y="544" width="195" height="42" rx="21" fill="#0F172A" stroke="#334155"/>
+    <rect x="597" y="544" width="158" height="42" rx="21" fill="#0F172A" stroke="#334155"/>
+    <text x="111" y="571" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">AUTHORIZED</text>
+    <text x="281" y="571" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">SCOPED</text>
+    <text x="420" y="571" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">NON-DESTRUCTIVE</text>
+    <text x="626" y="571" fill="#E2E8F0" font-family="Arial, sans-serif" font-size="18" letter-spacing="2">STUDENT-AWARE</text>
+  </g>
+  <defs>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(0 202 -202 0 177 133)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF4444" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="0" cy="0" r="1" gradientTransform="matrix(0 224 -224 0 1052 506)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c" x1="600" y1="0" x2="600" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#020617" stop-opacity=".04"/>
+    </linearGradient>
+    <radialGradient id="d" cx="0" cy="0" r="1" gradientTransform="matrix(0 56 -56 0 130 130)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF4444" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
