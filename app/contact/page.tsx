@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/contact-form";
 import PageHero from "@/components/page-hero";
 import Reveal from "@/components/reveal";
+import { serviceOptions } from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createMetadata({
@@ -31,7 +32,22 @@ const requestExamples = [
   "Student cybersecurity workshops for clubs or programs",
 ];
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams?: Promise<{
+    service?: string | string[];
+  }>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const requestedService = resolvedSearchParams?.service;
+  const serviceValue = Array.isArray(requestedService)
+    ? requestedService[0]
+    : requestedService;
+  const initialService = serviceOptions.includes(serviceValue ?? "")
+    ? serviceValue
+    : undefined;
+
   return (
     <>
       <PageHero
@@ -48,7 +64,7 @@ export default function ContactPage() {
       <section className="section-space pt-0">
         <div className="wrapper grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
-            <ContactForm />
+            <ContactForm initialService={initialService} />
           </Reveal>
 
           <Reveal delay={0.08}>

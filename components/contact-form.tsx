@@ -1,15 +1,20 @@
 "use client";
 
-import { type FormEvent, useId, useState } from "react";
+import { type FormEvent, useEffect, useId, useState } from "react";
 
 import { serviceOptions } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import type { InquiryFieldErrors } from "@/lib/contact-inquiry";
 import { cn } from "@/lib/utils";
 
-export default function ContactForm() {
+type ContactFormProps = {
+  initialService?: string;
+};
+
+export default function ContactForm({ initialService }: ContactFormProps) {
   const formId = useId();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedService, setSelectedService] = useState(initialService ?? "");
   const [fieldErrors, setFieldErrors] = useState<InquiryFieldErrors>({});
   const [status, setStatus] = useState<{
     type: "idle" | "success" | "error";
@@ -18,6 +23,10 @@ export default function ContactForm() {
     type: "idle",
     message: "",
   });
+
+  useEffect(() => {
+    setSelectedService(initialService ?? "");
+  }, [initialService]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -70,6 +79,7 @@ export default function ContactForm() {
       }
 
       form.reset();
+      setSelectedService(initialService ?? "");
       setStatus({
         type: "success",
         message:
@@ -238,7 +248,8 @@ export default function ContactForm() {
               fieldErrors.service ? `${formId}-service-error` : undefined
             }
             className={getFieldClassName("service")}
-            defaultValue=""
+            value={selectedService}
+            onChange={(event) => setSelectedService(event.target.value)}
           >
             <option value="">Select a service</option>
             {serviceOptions.map((service) => (

@@ -14,7 +14,14 @@ export default function ServiceCard({
   compact = false,
 }: ServiceCardProps) {
   const Icon = service.icon;
-  const href = `/services#${service.slug}`;
+  const href = compact
+    ? `/services#${service.slug}`
+    : {
+        pathname: "/contact",
+        query: {
+          service: service.title,
+        },
+      };
   const includedItems = compact ? service.included.slice(0, 3) : service.included;
 
   return (
@@ -86,7 +93,7 @@ export default function ServiceCard({
             className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-200 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
           >
             <span>
-              {compact ? "View full service details" : "Direct link to this service"}
+              {compact ? "View full service details" : "Request this service"}
             </span>
             <ChevronRight className="h-4 w-4" />
           </Link>
