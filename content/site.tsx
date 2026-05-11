@@ -51,6 +51,7 @@ export type MethodStep = {
 export const navigation: NavItem[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/contact", label: "Contact" },
@@ -410,3 +411,39 @@ export const reportHighlights = [
 export const serviceOptions = services.map((service) => service.title);
 
 export const homeMethodPreview = methodologySteps.slice(0, 4);
+
+export const servicesFaqs = [
+  {
+    question: "Are RedSec Edu services designed for international schools and EdTech teams too?",
+    answer:
+      "Yes. The service language is education-focused and internationally applicable, whether the organization is a school, training center, or student-facing platform.",
+  },
+  {
+    question: "Does RedSec Edu perform destructive penetration testing?",
+    answer:
+      "No. The methodology is built around authorized, scoped, and non-destructive review work suitable for school leadership approval.",
+  },
+  {
+    question: "Can a school start with one service and expand later?",
+    answer:
+      "Yes. Many institutions begin with a school security checkup or awareness session, then expand into student-data review, secure platform guidance, or incident preparation as needed.",
+  },
+];
+
+export const methodologyFaqs = [
+  {
+    question: "Why is written authorization emphasized so strongly?",
+    answer:
+      "Because education environments require explicit accountability. Written authorization confirms who approved the work, which systems are in scope, and what boundaries must be respected.",
+  },
+  {
+    question: "What does non-destructive testing mean in practice?",
+    answer:
+      "It means the review is designed to avoid service interruption, data modification, brute-force attempts, or unsafe activity that could affect school operations.",
+  },
+  {
+    question: "Can RedSec Edu confirm fixes after remediation?",
+    answer:
+      "Yes. A follow-up retest can be scoped to the original findings so the institution can confirm whether agreed remediation steps were completed successfully.",
+  },
+];

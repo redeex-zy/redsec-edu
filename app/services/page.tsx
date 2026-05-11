@@ -1,20 +1,33 @@
 import type { Metadata } from "next";
 
 import CTASection from "@/components/cta-section";
+import FAQSection from "@/components/faq-section";
+import JsonLd from "@/components/json-ld";
 import PageHero from "@/components/page-hero";
 import Reveal from "@/components/reveal";
 import ServiceCard from "@/components/service-card";
 import SectionHeading from "@/components/section-heading";
 import TrustBadge from "@/components/trust-badge";
 import { Button } from "@/components/ui/button";
+import {
+  services,
+  servicesFaqs,
+  trustBadges,
+} from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
-import { services, trustBadges } from "@/content/site";
+import {
+  createBreadcrumbSchema,
+  createFaqSchema,
+  createServiceCollectionSchema,
+  createServiceSchema,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = createMetadata({
   title: "Services",
   description:
     "Explore RedSec Edu services for school security checkups, student data protection reviews, staff cyber awareness, student workshops, portal guidance, and incident preparation.",
   path: "/services",
+  eyebrow: "Services",
   keywords: [
     "school security checkup",
     "student data protection review",
@@ -26,10 +39,26 @@ export const metadata: Metadata = createMetadata({
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          createBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          createServiceCollectionSchema(services),
+          ...services.map((service) => createServiceSchema(service)),
+          createFaqSchema(servicesFaqs),
+        ]}
+      />
+
       <PageHero
         eyebrow="Services"
         title="Practical cybersecurity support designed for real education environments."
         description="RedSec Edu services are built for schools, private institutions, education centers, and smaller education platforms that need safer public-facing systems, clearer cyber hygiene, and more informed users."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Services" },
+        ]}
       >
         <Button href="/contact" size="lg" showArrow>
           Request a Service Scope
@@ -79,6 +108,13 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <FAQSection
+        eyebrow="Service questions"
+        title="Common questions before a school cybersecurity engagement begins."
+        description="These answers help school leaders and education teams understand how RedSec Edu services are positioned and how a safe first scope usually starts."
+        items={servicesFaqs}
+      />
 
       <CTASection
         title="Need help choosing the right starting point?"

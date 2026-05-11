@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+
+import BlogCard from "@/components/blog-card";
+import JsonLd from "@/components/json-ld";
 import {
   aboutPillars,
   homeMethodPreview,
@@ -15,8 +19,30 @@ import SectionHeading from "@/components/section-heading";
 import ServiceCard from "@/components/service-card";
 import TrustBadge from "@/components/trust-badge";
 import { Button } from "@/components/ui/button";
+import { getFeaturedBlogPosts } from "@/content/blog";
+import { createMetadata } from "@/lib/metadata";
+import {
+  createServiceCollectionSchema,
+  createWebPageSchema,
+} from "@/lib/structured-data";
+
+export const metadata: Metadata = createMetadata({
+  title: "Cybersecurity for Schools, Students, and Education Platforms",
+  description:
+    "RedSec Edu helps schools, education platforms, and EdTech teams improve public-facing security, protect student-related data, and build stronger cyber awareness through authorized reviews and practical guidance.",
+  path: "/",
+  eyebrow: "Education cybersecurity",
+  keywords: [
+    "cybersecurity for schools",
+    "school cybersecurity",
+    "education platform security",
+    "student data protection",
+    "cyber awareness education",
+  ],
+});
 
 export default function Home() {
+  const featuredInsights = getFeaturedBlogPosts(3);
   const heroHighlights = [
     {
       ...aboutPillars[0],
@@ -32,6 +58,18 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          createWebPageSchema({
+            name: "RedSec Edu home",
+            description:
+              "Cybersecurity services, awareness guidance, and practical protection for schools, students, and education platforms.",
+            path: "/",
+          }),
+          createServiceCollectionSchema(services),
+        ]}
+      />
+
       <section className="relative overflow-hidden pb-20 pt-2 sm:pb-24 lg:pb-32">
         <div className="wrapper grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-center">
           <Reveal>
@@ -282,6 +320,32 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="section-space">
+        <div className="wrapper">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Insights"
+              title="Long-term guidance for schools, EdTech teams, and education platforms."
+              description="The RedSec Edu blog is designed to answer practical cybersecurity questions in plain language, with durable guidance around public exposure, student data, and cyber awareness."
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 xl:grid-cols-3">
+            {featuredInsights.map((post, index) => (
+              <Reveal key={post.slug} delay={index * 0.06}>
+                <BlogCard post={post} />
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="mt-10">
+            <Button href="/blog" variant="secondary" size="lg">
+              Explore the blog
+            </Button>
+          </Reveal>
         </div>
       </section>
 

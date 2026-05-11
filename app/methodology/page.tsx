@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import CTASection from "@/components/cta-section";
+import FAQSection from "@/components/faq-section";
+import JsonLd from "@/components/json-ld";
 import MethodStep from "@/components/method-step";
 import PageHero from "@/components/page-hero";
 import Reveal from "@/components/reveal";
@@ -8,16 +10,19 @@ import SectionHeading from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import {
   methodologyGuardrails,
+  methodologyFaqs,
   methodologySteps,
   reportHighlights,
 } from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
+import { createBreadcrumbSchema, createFaqSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = createMetadata({
   title: "Methodology",
   description:
     "Review the RedSec Edu methodology for authorized, scoped, non-destructive school cybersecurity work with reporting and remediation guidance.",
   path: "/methodology",
+  eyebrow: "Methodology",
   keywords: [
     "authorized cybersecurity testing",
     "school cybersecurity methodology",
@@ -29,10 +34,24 @@ export const metadata: Metadata = createMetadata({
 export default function MethodologyPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          createBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Methodology", path: "/methodology" },
+          ]),
+          createFaqSchema(methodologyFaqs),
+        ]}
+      />
+
       <PageHero
         eyebrow="Methodology"
         title="A safe cybersecurity methodology for schools and education platforms."
         description="RedSec Edu uses a clearly scoped process that begins with written authorization, stays non-destructive, and focuses on practical findings that schools can act on."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Methodology" },
+        ]}
       >
         <Button href="/contact" size="lg" showArrow>
           Request a Scoped Review
@@ -113,6 +132,13 @@ export default function MethodologyPage() {
           </div>
         </div>
       </section>
+
+      <FAQSection
+        eyebrow="Methodology questions"
+        title="Common questions about authorization, safety, and retesting."
+        description="These answers clarify how RedSec Edu keeps engagements scoped, professional, and suitable for school leadership review."
+        items={methodologyFaqs}
+      />
 
       <CTASection
         title="Need a methodology that school leadership can approve with confidence?"

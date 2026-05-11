@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import Script from "next/script";
 
+import JsonLd from "@/components/json-ld";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { rootMetadata } from "@/lib/metadata";
+import { createOrganizationSchema, createWebsiteSchema } from "@/lib/structured-data";
 
 import "./globals.css";
 
@@ -21,6 +22,7 @@ const displayFont = localFont({
       style: "normal",
     },
   ],
+  display: "swap",
   variable: "--font-display",
 });
 
@@ -42,68 +44,18 @@ const bodyFont = localFont({
       style: "normal",
     },
   ],
+  display: "swap",
   variable: "--font-body",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  applicationName: siteConfig.name,
-  keywords: [
-    "school cybersecurity",
-    "education cybersecurity",
-    "student data protection",
-    "school security review",
-    "cyber awareness training",
-    "student cybersecurity workshops",
-  ],
-  category: "technology",
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
-    images: [
-      {
-        url: absoluteUrl(siteConfig.ogImage),
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} social card`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
-    images: [absoluteUrl(siteConfig.ogImage)],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = rootMetadata;
 
 export const viewport: Viewport = {
   themeColor: "#020617",
   colorScheme: "dark",
-};
-
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -117,11 +69,7 @@ export default function RootLayout({
       className={`${displayFont.variable} ${bodyFont.variable} scroll-smooth`}
     >
       <body className="bg-slate-950 font-body text-slate-100 antialiased">
-        <Script
-          id="website-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        <JsonLd data={[createOrganizationSchema(), createWebsiteSchema()]} />
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

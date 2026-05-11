@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 
 import ContactForm from "@/components/contact-form";
+import JsonLd from "@/components/json-ld";
 import PageHero from "@/components/page-hero";
 import Reveal from "@/components/reveal";
 import { serviceOptions } from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
+import { createBreadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact",
   description:
     "Contact RedSec Edu to discuss an authorized school security checkup, student data review, awareness training, or student cybersecurity workshop.",
   path: "/contact",
+  eyebrow: "Contact",
   keywords: [
     "contact school cybersecurity consultant",
     "request school security review",
@@ -50,10 +53,21 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
+
       <PageHero
         eyebrow="Contact"
         title="Discuss a safe, scoped cybersecurity engagement for your school or education platform."
         description="Use the form below to describe your organization, the service you are interested in, and the public systems or training needs you want reviewed."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Contact" },
+        ]}
       >
         <p className="max-w-2xl text-sm leading-7 text-slate-400">
           Initial inquiries should stay high-level. Share public URLs and scope

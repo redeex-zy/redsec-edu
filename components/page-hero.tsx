@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import Breadcrumbs, { type BreadcrumbItem } from "@/components/breadcrumbs";
 import Reveal from "@/components/reveal";
 
 type PageHeroProps = {
@@ -7,6 +8,7 @@ type PageHeroProps = {
   title: string;
   description: string;
   children?: ReactNode;
+  breadcrumbs?: BreadcrumbItem[];
 };
 
 export default function PageHero({
@@ -14,11 +16,13 @@ export default function PageHero({
   title,
   description,
   children,
+  breadcrumbs,
 }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden pb-12 pt-4 sm:pb-16">
       <div className="wrapper">
         <Reveal className="max-w-[58rem]">
+          {breadcrumbs ? <Breadcrumbs items={breadcrumbs} /> : null}
           <div className="mb-5 inline-flex items-center gap-3">
             <span className="h-px w-10 bg-gradient-to-r from-red-400 via-cyan-300 to-transparent" />
             <p className="text-xs uppercase tracking-[0.32em] text-cyan-200/80">

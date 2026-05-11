@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 
 import CTASection from "@/components/cta-section";
+import JsonLd from "@/components/json-ld";
 import PageHero from "@/components/page-hero";
 import Reveal from "@/components/reveal";
 import SectionHeading from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
 import { aboutPillars } from "@/content/site";
 import { createMetadata } from "@/lib/metadata";
+import { createBreadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = createMetadata({
   title: "About",
   description:
     "Learn about RedSec Edu, a cybersecurity initiative focused on helping schools improve digital safety through practical reviews, awareness, and student-focused learning.",
   path: "/about",
+  eyebrow: "About",
   keywords: [
     "about redsec edu",
     "education cybersecurity initiative",
@@ -24,10 +27,21 @@ export const metadata: Metadata = createMetadata({
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={createBreadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
+
       <PageHero
         eyebrow="About"
         title="A cybersecurity initiative focused on safer digital environments for education."
         description="RedSec Edu helps educational institutions improve their digital safety through practical security reviews, awareness, and student-focused cybersecurity education."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "About" },
+        ]}
       >
         <Button href="/contact" size="lg" showArrow>
           Start a Conversation
